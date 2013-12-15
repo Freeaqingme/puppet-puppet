@@ -37,6 +37,8 @@ class puppet::params {
     }
   }
 
+  $is_ca = true
+
   if $::foreman_env {
     $environment = $::foreman_env
   } else {
