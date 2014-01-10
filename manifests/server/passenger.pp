@@ -42,7 +42,10 @@ class puppet::server::passenger {
         docroot  => $rack_location,
         ssl      => true,
         template => $puppet::real_template_passenger,
-        require  => Exec['puppetmaster-ca-generate'],
+        require  => [
+          Exec['puppetmaster-ca-generate'],
+          Service['puppet_server'], # Apache can't start if port 8140 is in use
+        ]
       }
     }
     nginx: {
@@ -52,7 +55,10 @@ class puppet::server::passenger {
         docroot        => $rack_location,
         create_docroot => false,
         template       => $puppet::real_template_passenger,
-        require        => Exec['puppetmaster-ca-generate'],
+        require        => [
+          Exec['puppetmaster-ca-generate'],
+          Service['puppet_server'], # Apache can't start if port 8140 is in use
+        ]
       }
     }
     default: { }
