@@ -7,5 +7,7 @@
 # Setting this to "no" keeps the puppet agent service from running.
 START=<% if scope.lookupvar('puppet::runmode') == 'service' -%>yes<% else %>no<% end %>
 
+LANG=en_US.UTF8; export LANG;
+
 # Startup options
 DAEMON_OPTS="<%= scope.lookupvar('puppet::client_daemon_opts') -%>"
