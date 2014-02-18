@@ -78,6 +78,7 @@ class puppet::params {
   $autosign = false
   $storeconfigs = true
   $storeconfigs_thin = true
+  $report_retention = 5
   $db = 'sqlite'
   $db_name = 'puppet'
   $db_server = $::fqdn

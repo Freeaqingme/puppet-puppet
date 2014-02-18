@@ -367,6 +367,9 @@
 #   Where the fileserver configuration is stored.
 #   Default: $confdir/fileserver.conf
 #
+# [*report_retention*]
+#   The number of days reports should be kept (only in server mode)
+#
 # == Examples
 #
 # You can use this class in 2 ways:
@@ -482,7 +485,8 @@ class puppet (
   $hiera_path          = params_lookup( 'hiera_path' ),
   $fileserver_path     = params_lookup( 'fileserver_path' ),
   $show_diff           = false,
-  $firewall_remote = ''
+  $firewall_remote = '',
+  $report_retention    = params_lookup( 'report_retention' ),
   ) inherits puppet::params {
 
   $bool_listen=any2bool($listen)

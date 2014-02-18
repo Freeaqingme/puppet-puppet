@@ -81,6 +81,21 @@ class puppet::server inherits puppet {
     }
   }
 
+  cron { 'puppet-clean-reports':
+    command => "${::puppet::data_dir}/clean-reports.sh",
+    minute  => 0,
+    user    => $puppet::config_file_owner,
+  }
+
+  file { 'puppet-clean-reports':
+    ensure  => file,
+    mode    => 755
+    path    => "${::puppet::data_dir}/clean-reports.sh",
+    owner   => $puppet::config_file_owner,
+    group   => $puppet::config_file_group,
+    content => template('puppet/clean-reports.sh.erb')
+  }
+
   ### Rails required when storeconfigs activated
   if $puppet::bool_storeconfigs == true { include puppet::rails }
 
