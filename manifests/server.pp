@@ -84,12 +84,12 @@ class puppet::server inherits puppet {
   cron { 'puppet-clean-reports':
     command => "${::puppet::data_dir}/clean-reports.sh",
     minute  => 0,
-    user    => $puppet::config_file_owner,
+    user    => 'root',
   }
 
   file { 'puppet-clean-reports':
     ensure  => file,
-    mode    => 755
+    mode    => 755,
     path    => "${::puppet::data_dir}/clean-reports.sh",
     owner   => $puppet::config_file_owner,
     group   => $puppet::config_file_group,
