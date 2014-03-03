@@ -1,6 +1,7 @@
 # File managed by Puppet
 
 [main]
+  confdir = <%= scope.lookupvar('puppet::conf_dir') %>
   vardir = <%= scope.lookupvar('puppet::data_dir') %>
   logdir = <%= scope.lookupvar('puppet::log_dir') %>
   rundir = <%= scope.lookupvar('puppet::run_dir') %>

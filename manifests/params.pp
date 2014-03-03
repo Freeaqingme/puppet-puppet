@@ -132,9 +132,15 @@ class puppet::params {
     default                                      => '/usr/lib/ruby/1.8/puppet',
   }
 
+  $conf_dir = $::operatingsystem ? {
+    /(?i:FreeBSD)/ => '/usr/local/etc/puppet',
+    default        => '/etc/puppet',
+  }
+
   $run_dir = $::operatingsystem ? {
     /(?i:OpenBSD)/ => '/var/puppet/run',
     /(?i:Windows)/ => "${win_basedir}/var/run",
+    /(?i:Solaris)/ => '/var/lib/puppet/run',
     default        => '/var/run/puppet',
   }
 
@@ -142,6 +148,7 @@ class puppet::params {
     /(?i:FreeBSD)/ => '/var/puppet/ssl',
     /(?i:OpenBSD)/ => '/etc/puppet/ssl',
     /(?i:Windows)/ => "${win_basedir}/etc/ssl",
+    /(?i:Solaris)/ => '/etc/puppet/ssl',
     default        => '/var/lib/puppet/ssl',
   }
 
@@ -149,7 +156,7 @@ class puppet::params {
   $template_auth = ''
   $template_fileserver = ''
   $template_passenger = ''
-  
+
   $future_parser = false
 
   $version_puppet = split($::puppetversion, '[.]')
@@ -162,9 +169,10 @@ class puppet::params {
   ### Application related parameters
 
   $package = $::operatingsystem ? {
-    /(?i:OpenBSD)/ => 'ruby-puppet',
-    /(?i:Windows)/ => 'Puppet',
-    default        => 'puppet',
+    /(?i:OpenBSD)/     => 'ruby-puppet',
+    /(?i:Windows)/     => 'Puppet',
+    /(?i:Solaris)/     => 'CSWpuppet3',
+    default            => 'puppet',
   }
 
   $package_provider = $::operatingsystem ? {
@@ -272,6 +280,7 @@ class puppet::params {
   $log_dir = $::operatingsystem ? {
     /(?i:OpenBSD)/ => '/var/puppet/log',
     /(?i:Windows)/ => "${win_basedir}/var/log",
+    /(?i:Solaris)/ => '/var/lib/puppet/log',
     default        => '/var/log/puppet',
   }
 
