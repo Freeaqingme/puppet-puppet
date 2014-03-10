@@ -845,7 +845,7 @@ class puppet (
   if $puppet::bool_firewall == true {
     
     firewall::rule { "puppet_${puppet::protocol}_${puppet::port}-out":
-      destination_v6 => $puppet::firewall_remote,
+     # destination    => $puppet::firewall_remote,
       protocol       => $puppet::protocol,
       port           => $puppet::port,
       action         => 'allow',
@@ -854,7 +854,7 @@ class puppet (
     }
 
     firewall::rule { "puppet_${puppet::protocol}_${puppet::port}-in":
-      source_v6                 => $puppet::firewall_remote,
+     # source                    => $puppet::firewall_remote,
       protocol                  => $puppet::protocol,
       port                      => $puppet::port,
       action                    => 'allow',
