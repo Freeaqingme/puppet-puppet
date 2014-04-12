@@ -73,6 +73,7 @@ class puppet::params {
   $prerun_command = ''
   $postrun_command = ''
   $externalnodes = false
+  $externalnodes_path = '/etc/puppet/node.rb'
   $passenger = false
   $passenger_type = 'apache'
   $autosign = false

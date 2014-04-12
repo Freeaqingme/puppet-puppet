@@ -109,6 +109,6 @@
 
 <% if scope.lookupvar('puppet::bool_externalnodes') == true -%>
   # Activate external node classifier 
-  external_nodes = /etc/puppet/node.rb
+  external_nodes = <%= scope.lookupvar('puppet::externalnodes_path') %>
   node_terminus = exec
 <% end -%>

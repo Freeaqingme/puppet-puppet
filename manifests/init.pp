@@ -48,6 +48,10 @@
 #   Value of 'reports' config option, or leave blank to auto-determine
 #
 # [*externalnodes*]
+#   Bool. Should Puppet use an ENC. Defaults to false.
+#
+# [*externalnodes_path*]
+#   The path of the ENC to use. Defaults to /etc/puppet/node.rb
 #
 # [*passenger*]
 #
@@ -399,6 +403,7 @@ class puppet (
   $prerun_command      = params_lookup( 'prerun_command' ),
   $postrun_command     = params_lookup( 'postrun_command' ),
   $externalnodes       = params_lookup( 'externalnodes' ),
+  $externalnodes_path  = params_lookup( 'externalnodes_path' ),
   $passenger           = params_lookup( 'passenger' ),
   $passenger_type      = params_lookup( 'passenger_type' ),
   $autosign            = params_lookup( 'autosign' ),
