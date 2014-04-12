@@ -858,16 +858,6 @@ class puppet (
       enable         => $puppet::manage_firewall,
     }
 
-    firewall::rule { "puppet_${puppet::protocol}_${puppet::port}-in":
-     # source                    => $puppet::firewall_remote,
-      protocol                  => $puppet::protocol,
-      port                      => $puppet::port,
-      action                    => 'allow',
-      direction                 => 'input',
-      iptables_explicit_matches => { 'state' => { 'state' => 'RELATED,ESTABLISHED' } },
-      enable                    => $puppet::manage_firewall,
-    }
-
     if $puppet::bool_listen == true {
       firewall::rule { "puppet_${puppet::protocol}_${puppet::port_listen}":
         source      => $puppet::firewall_src,
